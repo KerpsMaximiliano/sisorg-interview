@@ -1,0 +1,42 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"paths": {
+			"@components/*": ["src/app/core/components/*"],
+			"@constants/*": ["src/app/core/constants/*"],
+			"@dialogs/*": ["src/app/core/dialogs/*"],
+			"@directives/*": ["src/app/core/directives/*"],
+			"@interfaces/*": ["src/app/core/interfaces/*"],
+			"@services/*": ["src/app/core/services/*"],
+			"@pipes/*": ["src/app/core/pipes/*"],
+			"@type/*": ["src/app/core/types/*"],
+			"@validators/*": ["src/app/core/validators/*"],
+
+			"@tasks/*": ["src/app/modules/tasks/*"]
+		},
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": false,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "ES2022",
+		"useDefineForClassFields": false,
+		"lib": ["ES2022", "dom"]
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false,
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
+}

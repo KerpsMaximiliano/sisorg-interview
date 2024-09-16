@@ -1,0 +1,1 @@
+export type TStatus = 'COMPLETED' | 'COMPLETING' | 'DELETED' | 'DELETING' | 'ERROR' | 'INITIAL' | 'LOADED' | 'LOADING';

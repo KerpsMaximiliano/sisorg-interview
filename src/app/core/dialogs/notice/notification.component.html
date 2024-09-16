@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+	<div class="flex col gp-16">
+		<p>{{ data.description }}</p>
+
+		<div class="flex end align gp-16">
+			<app-button (actionClick)="dialogRef.close(false)" variant="basic" color="primary" leyend="Cancelar" />
+
+			<app-button (actionClick)="dialogRef.close(true)" variant="raised" color="warn" leyend="Confirmar" />
+		</div>
+	</div>
+</mat-dialog-content>

@@ -1,0 +1,48 @@
+@switch (action()) {
+	@case ('INITIAL') {
+		<h2 mat-dialog-title>{{ data.title }}</h2>
+
+		<mat-dialog-content>
+			<div class="flex col gp-16">
+				<p>¿Estás seguro de que deseas eliminar esta tarea?</p>
+
+				<div class="flex end align gp-16">
+					<app-button (actionClick)="dialogRef.close()" variant="basic" color="primary" leyend="Cancelar" />
+
+					<app-button (actionClick)="remove()" variant="raised" color="warn" leyend="Borrar" />
+				</div>
+			</div>
+		</mat-dialog-content>
+	}
+	@case ('UPDATING') {
+		<h2 mat-dialog-title>Eliminando tarea</h2>
+	}
+	@case ('FAILED') {
+		<h2 mat-dialog-title>Ocurrio un error al eliminar la tarea</h2>
+
+		<mat-dialog-content>
+			<div class="flex col gp-16">
+				<p>Ha ocurrido un error al eliminar la tarea.</p>
+
+				<div class="flex end align gp-16">
+					<app-button (actionClick)="dialogRef.close()" variant="basic" color="primary" leyend="Cancelar" />
+
+					<app-button (actionClick)="remove()" variant="raised" color="warn" leyend="Reintentar" />
+				</div>
+			</div>
+		</mat-dialog-content>
+	}
+	@case ('UPDATED') {
+		<h2 mat-dialog-title>Tarea eliminada</h2>
+
+		<mat-dialog-content>
+			<div class="flex col gp-16">
+				<p>La tarea ha sido eliminada correctamente</p>
+
+				<div class="flex end">
+					<app-button (actionClick)="dialogRef.close()" variant="raised" color="primary" leyend="Aceptar" />
+				</div>
+			</div>
+		</mat-dialog-content>
+	}
+}

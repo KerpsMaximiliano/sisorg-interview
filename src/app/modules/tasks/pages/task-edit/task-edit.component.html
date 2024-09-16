@@ -1,0 +1,151 @@
+@switch (status()) {
+	@case ('LOADING' || 'INITIAL') {
+		<main class="grid place">
+			<h1>Cargando tarea</h1>
+		</main>
+	}
+	@case ('ERROR') {
+		<main class="grid place">
+			<div class="flex col align gp-36">
+				<h1>No se pudo cargar la tarea</h1>
+
+				<div class="flex wrap gp-36">
+					<app-link link="/" variant="stroked" icon="arrow_back" color="primary" leyend="Volver" />
+				</div>
+			</div>
+		</main>
+	}
+	@default {
+		@switch (action()) {
+			@case ('INITIAL') {
+				<main class="flex col gp-36">
+					<div class="flex align gp-16">
+						<app-link link="/" variant="icon" icon="arrow_back" label="Atras" tooltip="Volver" />
+
+						<h1>Editar tarea</h1>
+					</div>
+					<form [formGroup]="form" class="flex col gp-16">
+						<mat-form-field appearance="outline">
+							<mat-label>Título</mat-label>
+
+							<mat-icon matPrefix> title </mat-icon>
+
+							<input type="text" matInput formControlName="title" placeholder="Ingresé el título" required minlength="3" maxlength="51" />
+
+							<mat-hint align="end">{{ form.controls['title'].value?.length || 0 }} / 50 </mat-hint>
+
+							@if (form.controls['title'].value) {
+								<app-button
+									variant="icon"
+									label="Limpiar"
+									icon="delete"
+									tooltip="Limpiar"
+									(actionClick)="form.controls['title'].setValue(null)"
+									[disabled]="form.disabled"
+									matSuffix
+								/>
+							}
+
+							@if (form.controls['title'].touched && form.controls['title'].invalid && error(form.controls['title'])) {
+								<mat-error>{{ error(form.controls['title']) }}</mat-error>
+							}
+						</mat-form-field>
+
+						<mat-form-field appearance="outline">
+							<mat-label>Descripción</mat-label>
+
+							<mat-icon matPrefix> description </mat-icon>
+
+							<textarea
+								matInput
+								formControlName="description"
+								placeholder="Ingresé la descripción"
+								minlength="3"
+								maxlength="251"
+								cdkTextareaAutosize
+								cdkAutosizeMinRows="1"
+							></textarea>
+
+							<mat-hint align="end">{{ form.controls['description'].value?.length || 0 }} / 250 </mat-hint>
+
+							@if (form.controls['description'].value) {
+								<app-button
+									variant="icon"
+									label="Limpiar"
+									icon="delete"
+									tooltip="Limpiar"
+									(actionClick)="form.controls['description'].setValue(null)"
+									[disabled]="form.disabled"
+									matSuffix
+								/>
+							}
+
+							@if (form.controls['description'].touched && form.controls['description'].invalid && error(form.controls['description'])) {
+								<mat-error>{{ error(form.controls['description']) }}</mat-error>
+							}
+						</mat-form-field>
+
+						<mat-form-field appearance="outline">
+							<mat-label> Estado </mat-label>
+
+							<mat-icon matPrefix> flag </mat-icon>
+
+							<mat-select formControlName="status">
+								@for (item of statuses; track $index) {
+									<mat-option [value]="item.value">{{ item.label }}</mat-option>
+								}
+							</mat-select>
+						</mat-form-field>
+
+						<mat-form-field appearance="outline">
+							<mat-label> Prioridad </mat-label>
+
+							<mat-icon matPrefix> priority_high </mat-icon>
+
+							<mat-select formControlName="priority">
+								@for (item of priorities; track $index) {
+									<mat-option [value]="item.value">{{ item.label }}</mat-option>
+								}
+							</mat-select>
+						</mat-form-field>
+
+						<div class="flex end">
+							<app-button (actionClick)="save()" variant="raised" icon="edit" leyend="Modificar" [disabled]="!form.valid || checkForm()" />
+						</div>
+					</form>
+				</main>
+			}
+			@case ('UPDATING') {
+				<main class="grid place">
+					<h1>Editando tarea</h1>
+				</main>
+			}
+			@case ('UPDATED') {
+				<main class="grid place">
+					<div class="flex col align gp-36">
+						<h1>Tarea editada</h1>
+
+						<div class="flex wrap gp-36">
+							<app-link link="/" variant="stroked" icon="arrow_back" color="primary" leyend="Volver" />
+
+							<app-button (actionClick)="edit()" variant="raised" icon="edit" color="primary" leyend="Volver a editar" />
+						</div>
+					</div>
+				</main>
+			}
+			@case ('FAILED') {
+				<main class="grid place">
+					<div class="flex col align gp-36">
+						<h1>Ocurrio un error al crear la tarea</h1>
+
+						<div class="flex wrap gp-36">
+							<app-link link="/" variant="stroked" icon="arrow_back" color="primary" leyend="Volver" />
+
+							<app-button (actionClick)="save()" variant="icon" icon="refresh" color="primary" label="Reintentar" tooltip="Reintentar" />
+						</div>
+					</div>
+				</main>
+			}
+		}
+	}
+}

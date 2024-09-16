@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<mat-dialog-content>
+	<div class="flex col gp-36">
+		<div class="flex col gp-16">
+			<strong>{{ data.description ?? 'Sin descripción' }}</strong>
+
+			<ul class="flex col gp-16">
+				<li><strong>Creación: </strong>{{ data.createdAt | timestamp }}</li>
+				<li><strong>Modificación: </strong>{{ data.updatedAt ? (data.updatedAt | timestamp) : 'No se modifico' }}</li>
+				<li><strong>Prioridad: </strong>{{ priorities[data.priority - 1].label }}</li>
+				<li><strong>Estado: </strong>{{ statuses[data.status - 1].label }}</li>
+			</ul>
+		</div>
+
+		<div class="flex end align gp-16">
+			<app-button (actionClick)="dialogRef.close(false)" variant="basic" color="primary" leyend="Cerrar" />
+		</div>
+	</div>
+</mat-dialog-content>

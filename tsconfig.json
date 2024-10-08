@@ -1,19 +1,6 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"paths": {
-			"@components/*": ["src/app/core/components/*"],
-			"@constants/*": ["src/app/core/constants/*"],
-			"@dialogs/*": ["src/app/core/dialogs/*"],
-			"@directives/*": ["src/app/core/directives/*"],
-			"@interfaces/*": ["src/app/core/interfaces/*"],
-			"@services/*": ["src/app/core/services/*"],
-			"@pipes/*": ["src/app/core/pipes/*"],
-			"@type/*": ["src/app/core/types/*"],
-			"@validators/*": ["src/app/core/validators/*"],
-
-			"@tasks/*": ["src/app/modules/tasks/*"]
-		},
 		"baseUrl": "./",
 		"outDir": "./dist/out-tsc",
 		"strict": true,

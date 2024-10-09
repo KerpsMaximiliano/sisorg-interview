@@ -41,6 +41,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
+						"serviceWorker": false,
 						"outputPath": "dist/sisorg-interview",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
@@ -51,7 +52,7 @@
 						"styles": ["src/styles.scss"],
 						"scripts": [],
 						"server": "src/main.server.ts",
-						"prerender": true,
+						"prerender": false,
 						"ssr": {
 							"entry": "server.ts"
 						}

@@ -50,7 +50,6 @@ export interface IProduct {
 
 @Injectable({ providedIn: 'root' })
 export class CoreService {
-
 	public readonly http = inject(HttpClient);
 	public readonly headers = new HttpHeaders({
 		'Content-Type': 'application/json'

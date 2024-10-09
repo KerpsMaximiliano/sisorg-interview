@@ -1,7 +1,12 @@
+import { ApplicationRef } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+
+// * Component.
 import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
+// * Server Configuration.
+import { CONFIGURATION } from './app/app.config.server';
 
-export default bootstrap;
+const BOOTSTRAP: () => Promise<ApplicationRef> = () => bootstrapApplication(AppComponent, CONFIGURATION);
+
+export default BOOTSTRAP;

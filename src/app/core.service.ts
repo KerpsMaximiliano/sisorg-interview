@@ -19,21 +19,21 @@ export interface IProductFields {
   price: INumber;
 }
 
-interface INull {
-  nullValue: null
-}
+// interface INull {
+//   nullValue: null
+// }
 
 interface IString {
   stringValue: string
 }
 
-interface IDate {
-  timestampValue: string
-}
+// interface IDate {
+//   timestampValue: string
+// }
 
-interface IBoolean {
-  booleanValue: boolean
-}
+// interface IBoolean {
+//   booleanValue: boolean
+// }
 
 interface INumber {
   integerValue: string
@@ -50,14 +50,12 @@ export interface IProduct {
 
 @Injectable({ providedIn: 'root' })
 export class CoreService {
-	public readonly http = inject(HttpClient);
-	public readonly headers = new HttpHeaders({
-		'Content-Type': 'application/json'
-	});
+	private readonly http: HttpClient = inject(HttpClient);
+	private readonly headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-	public getAll(): Observable<IProduct[]> {
+	public get(): Observable<IProduct[]> {
 		return this.http
-			.get<IResponse<IProductFields>>(`https://firestore.googleapis.com/v1/projects/sisorg-interview/databases/(default)/documents/products`, { headers: this.headers, params: { pageSize: 2 } })
+			.get<IResponse<IProductFields>>(`https://firestore.googleapis.com/v1/projects/sisorg-interview/databases/(default)/documents/products`, { headers: this.headers })
 			.pipe(
 				map((res: IResponse<IProductFields>) =>
 					res.documents.map((doc) => ({

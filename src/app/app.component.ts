@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
-
-// * Router.
+import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+// * Services.
 import { CoreService, IProduct } from './core.service';
 
 @Component({
@@ -10,24 +10,25 @@ import { CoreService, IProduct } from './core.service';
 	standalone: true,
 	imports: [RouterOutlet],
 	template: `
-		<router-outlet />
+		<h1>PRODUCTS</h1>
 		<ul>
-		@for (item of products(); track $index) {
-			<li>
-				{{ item.title }}
-				{{ item.description }}
-				{{ item.price }}
-			</li>
-		}
+			@for (item of products(); track $index) {
+				<li>
+					{{ item.title }}
+					{{ item.description }}
+					{{ item.price }}
+				</li>
+			}
 		</ul>
+		<router-outlet />
 	`
 })
 export class AppComponent implements OnInit {
-	public readonly products = signal<IProduct[]>([]);
+	public readonly products: WritableSignal<IProduct[]> = signal<IProduct[]>([]);
 
-	private _core: CoreService = inject(CoreService);
+	private readonly _core: CoreService = inject(CoreService);
 
 	public ngOnInit(): void {
-		this._core.getAll().subscribe((products) => this.products.set(products));	
+		this._core.get().subscribe((products) => this.products.set(products));	
 	}
 }

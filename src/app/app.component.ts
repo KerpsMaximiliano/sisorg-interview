@@ -10,7 +10,7 @@ import { CoreService, IProduct } from './core.service';
 	standalone: true,
 	imports: [RouterOutlet],
 	template: `
-		<h1>PRODUCTS</h1>
+		<h1>PRODUCTS SSR: PRERENDER FALSE</h1>
 		<ul>
 			@for (item of products(); track $index) {
 				<li>

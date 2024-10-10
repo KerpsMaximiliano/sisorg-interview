@@ -39,15 +39,14 @@
 			"prefix": "app",
 			"architect": {
 				"build": {
-					"builder": "@angular/build:application",
+					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"serviceWorker": false,
 						"outputPath": "dist/sisorg-interview",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
+						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
-						"polyfills": ["zone.js"],
 						"assets": ["src/favicon.ico", "src/assets"],
 						"styles": ["src/styles.scss"],
 						"server": "src/main.server.ts",
@@ -79,7 +78,7 @@
 					"defaultConfiguration": "production"
 				},
 				"serve": {
-					"builder": "@angular/build:dev-server",
+					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
 							"buildTarget": "sisorg-interview:build:production"
@@ -91,7 +90,7 @@
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
-					"builder": "@angular/build:extract-i18n",
+					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
 						"buildTarget": "sisorg-interview:build"
 					}

@@ -1,0 +1,7 @@
+<header>
+  <nav>
+    @for (item of navigation; track $index) {
+    <a routerLink="{{ item.route }}">{{ item.label }}</a>
+    }
+  </nav>
+</header>

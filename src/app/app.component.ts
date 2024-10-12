@@ -1,34 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-// * Services.
-import { CoreService, IProduct } from './core.service';
+// * Components.
+import { HeaderComponent } from './core/components/header/header.component';
 
 @Component({
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	selector: 'app-root',
 	standalone: true,
-	imports: [RouterOutlet],
-	template: `
-		<h1>PRODUCTS SSR: PRERENDER FALSE</h1>
-		<ul>
-			@for (item of products(); track $index) {
-				<li>
-					{{ item.title }}
-					{{ item.description }}
-					{{ item.price }}
-				</li>
-			}
-		</ul>
-		<router-outlet />
-	`
+	imports: [RouterOutlet, HeaderComponent],
+	template: '<app-header /> <router-outlet />'
 })
-export class AppComponent implements OnInit {
-	public readonly products: WritableSignal<IProduct[]> = signal<IProduct[]>([]);
-
-	private readonly _core: CoreService = inject(CoreService);
-
-	public ngOnInit(): void {
-		this._core.get().subscribe((products) => this.products.set(products));	
-	}
-}
+export class AppComponent {}

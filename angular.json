@@ -4,6 +4,10 @@
 	"newProjectRoot": "projects",
 	"projects": {
 		"sisorg-interview": {
+			"i18n": {
+				"sourceLocale": { "code": "en", "baseHref": "" },
+				"locales": { "es": "src/i18n/messages.es.xlf" }
+			},
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -41,6 +45,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
+						"localize": ["es"],
 						"outputPath": "dist/sisorg-interview",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
@@ -50,8 +55,10 @@
 						"assets": ["src/favicon.ico", "src/assets"],
 						"styles": ["src/styles.scss"],
 						"server": "src/main.server.ts",
-						"prerender": false,
-						"ssr": { "entry": "server.ts" }
+						"prerender": true,
+						"ssr": { "entry": "server.ts" },
+						"i18nMissingTranslation": "warning",
+						"i18nDuplicateTranslation": "warning"
 					},
 					"configurations": {
 						"production": {
@@ -67,7 +74,8 @@
 									"maximumError": "4kb"
 								}
 							],
-							"outputHashing": "all"
+							"outputHashing": "all",
+							"localize": ["en", "es"]
 						},
 						"development": {
 							"optimization": false,

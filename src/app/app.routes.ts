@@ -19,10 +19,13 @@ export const APP_ROUTES: Routes = [
   // {
   //   path: ROUTES.home,
   //     loadComponent: async () => await import('./modules/home/home.component').then((c) => c.HomeComponent)
-  // },
-	{
-		path: '**',
-		redirectTo: '',
-		pathMatch: 'full'
+  {
+	  path: 'page-1',
+	  loadComponent: async () => await import('./modules/home/home.component').then((c) => c.HomeComponent)
 	}
+	// {
+	// 	path: '**',
+	// 	redirectTo: '',
+	// 	pathMatch: 'full'
+	// }
 ];

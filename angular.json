@@ -5,8 +5,15 @@
 	"projects": {
 		"sisorg-interview": {
 			"i18n": {
-				"sourceLocale": { "code": "en", "baseHref": "" },
-				"locales": { "es": "src/i18n/messages.es.xlf" }
+				"sourceLocale": {
+					"code": "en",
+					"baseHref": ""
+				},
+				"locales": {
+					"es": {
+						"translation": "src/locale/messages.es.xlf"
+					}
+				}
 			},
 			"projectType": "application",
 			"schematics": {
@@ -45,7 +52,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"localize": ["es"],
+						"localize": ["en", "es"],
 						"outputPath": "dist/sisorg-interview",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
@@ -74,13 +81,14 @@
 									"maximumError": "4kb"
 								}
 							],
-							"outputHashing": "all",
-							"localize": ["en", "es"]
+							"localize": ["en", "es"],
+							"outputHashing": "all"
 						},
 						"development": {
 							"optimization": false,
 							"extractLicenses": false,
-							"sourceMap": true
+							"sourceMap": true,
+							"localize": ["es"]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -100,7 +108,9 @@
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
-						"buildTarget": "sisorg-interview:build"
+						"buildTarget": "sisorg-interview:build",
+						"format": "xlf",
+						"outputPath": "src/locale"
 					}
 				},
 				"lint": {

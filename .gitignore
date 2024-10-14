@@ -45,7 +45,12 @@ Thumbs.db
 .nx/workspace-data
 
 # Firebase
-.firebase
+.firebase/sisorg-6dadb/functions/node_modules
+.firebase/sisorg-6dadb/functions/.env
+.firebase/sisorg-6dadb/functions/bootstrap.js
+.firebase/sisorg-6dadb/functions/package-lock.json
+.firebase/sisorg-6dadb/functions/package.json
+.firebase/sisorg-6dadb/functions/server.js
 *-debug.log
 .runtimeconfig.json
 

@@ -64,8 +64,8 @@
 						"server": "src/main.server.ts",
 						"prerender": true,
 						"ssr": { "entry": "server.ts" },
-						"i18nMissingTranslation": "warning",
-						"i18nDuplicateTranslation": "warning"
+						"i18nMissingTranslation": "error",
+						"i18nDuplicateTranslation": "error"
 					},
 					"configurations": {
 						"production": {
